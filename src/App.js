@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Segment, Image, Tab, Card, Header, Button, Icon } from 'semantic-ui-react';
+import { Container, Segment, Image, Tab, Card, Header, Button, Icon, Form, Radio } from 'semantic-ui-react';
 import logo from './logo.png';
 import dummyData from './dummyData.json';
 
@@ -10,6 +10,7 @@ const App = () => {
   const HIRING_CHALLANGES = 'Hiring Challenges';
   const COLLEGE_CHALLANGES = 'College Challenges';
   const [challanges, setChallanges] = useState(null);
+  const [showChallanges, setShowChallanges] = useState('all');
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
@@ -21,7 +22,12 @@ const App = () => {
     } else setChallanges(dummyData);
   }, []);
 
-  const filterChallanges = challangeType => challanges && challanges.filter(challange => challange.challenge_type === challangeType);
+  const filterChallanges = challangeType =>
+    challanges &&
+    challanges.filter(challange => {
+      if (showChallanges === 'all') return challange.challenge_type === challangeType;
+      return challange.challenge_type === challangeType && challange.status === showChallanges;
+    });
 
   const getChallanges = challangeType => {
     const filteredChallanges = filterChallanges(challangeType);
@@ -48,7 +54,8 @@ const App = () => {
             extra={
               <div className="flex-item">
                 <strong>
-                  <Icon name="calendar alternate" /> {challange.date} {challange.time}
+                  <Icon name="calendar alternate" />
+                  Ends on: {challange.date}
                 </strong>
                 <Button content="Subscribe" href={challange.subscribe} target="_blank" icon="external alternate" primary />
               </div>
@@ -68,10 +75,43 @@ const App = () => {
 
   return (
     <Container fluid className="m-0">
-      <Segment className="mb-2px" content={<Image src={logo} size="small" />} />
+      <Segment className="mb-2px flex-item">
+        <Image src={logo} size="small" />
+        <Form>
+          <Form.Field inline>
+            <Radio
+              label="All"
+              name="radioGroup"
+              value="all"
+              checked={showChallanges === 'all'}
+              onChange={() => setShowChallanges('all')}
+              className="mr-1"
+            />
+            <Radio
+              label="Ongoing"
+              name="radioGroup"
+              value="ONGOING"
+              checked={showChallanges === 'ONGOING'}
+              onChange={() => setShowChallanges('ONGOING')}
+              className="mr-1"
+            />
+            <Radio
+              label="Upcoming"
+              name="radioGroup"
+              value="UPCOMING"
+              checked={showChallanges === 'UPCOMING'}
+              onChange={() => setShowChallanges('UPCOMING')}
+              className="mr-1"
+            />
+
+            <Icon name="shutdown" onClick={() => window.close()} link />
+          </Form.Field>
+        </Form>
+      </Segment>
       <Segment loading={!challanges} className="body" content={<Tab menu={{ secondary: true, pointing: true }} panes={panes} />} />
       <Segment className="mt-2px footer flex-item">
         <span>
+          <Icon name="copyright outline" />{' '}
           <a href="http://www.tcmhack.in" className="text-white" target="_blank" rel="noopener noreferrer">
             TCMHACK
           </a>{' '}

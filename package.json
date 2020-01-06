@@ -2,7 +2,6 @@
   "name": "heackerearch-chrome-extension",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://tikamchand06.github.io/heackerearch-chrome-extension",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
@@ -17,7 +16,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "INLINE_RUNTIME_CHUNK=false react-scripts build",
-    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -36,7 +34,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "gh-pages": "^2.1.1"
-  }
+  "devDependencies": {}
 }

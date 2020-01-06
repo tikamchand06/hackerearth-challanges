@@ -36,6 +36,7 @@ body *:not(i) {
 }
 .ui.segment.body {
   min-height: 320px;
+  margin-bottom: 3.4rem !important;
 }
 .text-white {
   color: white;
@@ -44,4 +45,7 @@ body *:not(i) {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.mr-1 {
+  margin-right: 1rem;
 }
