@@ -55,7 +55,7 @@ const App = () => {
               <div className="flex-item">
                 <strong>
                   <Icon name="calendar alternate" />
-                  Ends on: {challange.date}
+                  Ends on: {challange.end_date}
                 </strong>
                 <Button content="Subscribe" href={challange.subscribe} target="_blank" icon="external alternate" primary />
               </div>
