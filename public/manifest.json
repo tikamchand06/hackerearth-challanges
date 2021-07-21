@@ -1,17 +1,12 @@
 {
+  "version": "0.0.2",
+  "manifest_version": 3,
   "short_name": "HackerEarth",
   "name": "HackerEarth Challenges",
-  "manifest_version": 2,
-  "version": "0.1",
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "index.html"
-  },
+  "author": "TIKAM CHAND MEGHWANSHI",
+  "homepage_url": "https://www.tcmhack.in/",
   "description": "HackerEarth Extension keeps you updated with upcoming challenges and other resources on HackerEarth.",
-  "icons": {
-    "128": "icon.png",
-    "16": "icon.png",
-    "48": "icon.png"
-  },
-  "permissions": ["http://www.hackerearth.com/", "https://www.hackerearth.com/"]
+  "icons": { "128": "icon.png" },
+  "action": { "default_icon": "icon.png", "default_popup": "index.html" },
+  "host_permissions": ["*://*.hackerearth.com/*"]
 }
